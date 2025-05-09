@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import searcherAnim from "../assets/anim/searcher-anim.json";
 import Lottie from "lottie-react";
 import type { LottieRefCurrentProps } from "lottie-react";
-import logo from "../assets/myajoImg.jpg";
+import logo from "../assets/logo.png";
 
 const Fallback: React.FC = () => {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
