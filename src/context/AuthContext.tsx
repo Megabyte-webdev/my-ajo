@@ -28,7 +28,7 @@ interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const queryClient = useQueryClient();
+ // const queryClient = useQueryClient();
 
   const [authDetails, setAuthDetails] = useState<AuthUser | null>(() => {
     const storedUser = sessionStorage.getItem("authUser");
