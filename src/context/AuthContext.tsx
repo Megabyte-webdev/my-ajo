@@ -1,9 +1,4 @@
-import React, {
-  createContext,
-  useEffect,
-  useState,
-  useContext,
-} from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
 import type { ReactNode } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
@@ -90,10 +85,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     setAuthDetails(newUser);
     if (newUser) {
       sessionStorage.setItem("authUser", JSON.stringify(newUser));
-      queryClient.setQueryData(["authUser"], newUser);
+      queryClient.setQueryData({ queryKey: ["authUser"], data: newUser });
     } else {
       sessionStorage.removeItem("authUser");
-      queryClient.removeQueries(["authUser"]);
+      queryClient.removeQueries({ queryKey: ["authUser"] });
     }
   };
 
@@ -109,4 +104,6 @@ export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) throw new Error("useAuth must be used within AuthProvider");
   return context;
+};
+urn context;
 };
