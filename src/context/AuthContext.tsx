@@ -81,19 +81,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, [authDetails]);
 
-  const updateAuth = (newUser: AuthUser | null) => {
-    setAuthDetails(newUser);
-    if (newUser) {
-      sessionStorage.setItem("authUser", JSON.stringify(newUser));
-      queryClient.setQueryData({ queryKey: ["authUser"], data: newUser });
-    } else {
-      sessionStorage.removeItem("authUser");
-      queryClient.removeQueries({ queryKey: ["authUser"] });
-    }
-  };
 
   return (
-    <AuthContext.Provider value={{ authDetails, updateAuth }}>
+    <AuthContext.Provider value={{ authDetails }}>
       {children}
     </AuthContext.Provider>
   );
