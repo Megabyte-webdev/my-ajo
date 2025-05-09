@@ -61,6 +61,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
+  const updateAuth = (user: AuthUser | null) => {
+    setAuthDetails(user);
+    if (user) {
+      sessionStorage.setItem("authUser", JSON.stringify(user));
+    } else {
+      sessionStorage.removeItem("authUser");
+    }
+  };
+
   useEffect(() => {
     if (!authDetails?.token?.expiresAt) return;
 
@@ -82,7 +91,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, [authDetails]);
 
   return (
-    <AuthContext.Provider value={{ authDetails }}>
+    <AuthContext.Provider value={{ authDetails, updateAuth }}>
       {children}
     </AuthContext.Provider>
   );
