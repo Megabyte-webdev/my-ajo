@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import headerImg from "@/assets/myajoImg.jpg";
+import headerImg from "@/assets/logo.png";
 import { Link } from "react-router-dom";
 import SEOHelmet from "@/engine/SEOHelmet";
 
@@ -64,7 +64,7 @@ export default function Login() {
     <div className="flex flex-col md:flex-row max-w-[1200px] min-h-screen bg-white md:my-3 mx-auto md:rounded-lg md:shadow-lg overflow-hidden">
       <SEOHelmet title="Login" />
       {/* Image Section */}
-      <div className="w-full md:w-1/2 h-64 md:h-auto">
+      <div className="w-full md:w-1/2 h-64 md:h-auto bg-[#D9B28C]/80">
         <img
           src={headerImg}
           alt="Login Visual"
