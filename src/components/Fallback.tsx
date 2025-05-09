@@ -20,7 +20,7 @@ const Fallback: React.FC = () => {
         className="w-[40%] md:w-[25%]"
         animationData={searcherAnim}
       />
-      <img src={logo} className="w-[15%]" alt="Main Logo" />
+      <img src={logo} className="h-32" alt="Main Logo" />
     </main>
   );
 };
