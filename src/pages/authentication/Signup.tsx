@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import headerImg from "@/assets/myajoImg.jpg";
+import headerImg from "@/assets/logo.png";
 import { Link } from "react-router-dom";
 import SEOHelmet from "@/engine/SEOHelmet";
 
@@ -21,7 +21,7 @@ export default function Signup() {
       <SEOHelmet title="Register" />
       
       {/* Image Section */}
-      <div className="w-full md:w-1/2 h-64 md:h-auto">
+      <div className="w-full md:w-1/2 h-64 md:h-auto bg-[#D9B28C]">
         <img
           src={headerImg}
           alt="Signup Visual"
