@@ -21,7 +21,7 @@ export default function Signup() {
       <SEOHelmet title="Register" />
       
       {/* Image Section */}
-      <div className="w-full md:w-1/2 h-64 md:h-auto bg-[#D9B28C]">
+      <div className="w-full md:w-1/2 h-64 md:h-auto bg-[#D9B28C]/80">
         <img
           src={headerImg}
           alt="Signup Visual"
