@@ -76,7 +76,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // if (isTokenExpired(authDetails.token.expiresAt)) {
     //   updateAuth(null);
     // }
-    setAuthDetails({user:{role:"agent"}})
+    setAuthDetails({
+    id: "1",
+    email: "agent@example.com",
+    name: "Agent",
+    token: {
+      token: "dummy-token",
+      expiresAt: new Date(Date.now() + 1000 * 60 * 60).toISOString(), // 1 hour from now
+    },
+  });
   }, []);
 
   useEffect(() => {
