@@ -17,11 +17,11 @@ interface AuthUser {
 }
 
 interface AuthContextType {
-  authDetails: AuthUser | null ;
-  updateAuth: (user: AuthUser | null) => void;
+  authDetails: AuthUser | undefined ;
+  updateAuth: (user: AuthUser | undefined) => void;
 }
 
-export const AuthContext = createContext<AuthContextType | null>(null);
+export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 interface AuthProviderProps {
   children: ReactNode;
