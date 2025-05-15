@@ -1,6 +1,5 @@
 import { lazy, useContext } from "react";
-import { Routes, Route } from "react-router-dom";
-import type { Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const AgentDashboard = lazy(() => import("../pages/agent/AgentDashboard"));
