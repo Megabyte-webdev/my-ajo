@@ -61,7 +61,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const updateAuth = (user: AuthUser | null) => {
+  const updateAuth = (user: AuthUser | undefined) => {
     setAuthDetails(user);
     if (user) {
       sessionStorage.setItem("authUser", JSON.stringify(user));
