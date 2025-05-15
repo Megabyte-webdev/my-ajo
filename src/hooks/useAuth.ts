@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query"; // Ensure this is from @tanstack/react-query
+import { useMutation } from "@tanstack/react-query"; // Ensure this is from @tanstack/react-query
 import { useNavigate } from "react-router-dom";
 import { axiosClient } from "../services/axios-client";
 import { AuthContext } from "../context/AuthContext";
@@ -58,9 +58,6 @@ const useAuth = () => {
       onSuccess({ message: "Registration Successful!", success: userData?.message || "User created successfully" });
     },
     onError: (err) => {
-      const errorDetails = typeof err.response?.data?.errors === 'string'
-        ? err.response.data.errors
-        : Object.values(err.response?.data?.errors || {}).map((item) => item?.message).join(",");
       onFailure({ message: "Registration Failed", error: extractErrorMessage(err) });
     },
   });
