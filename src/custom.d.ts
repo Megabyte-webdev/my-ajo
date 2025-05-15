@@ -1,5 +1,5 @@
 // Allow importing .jsx files without TypeScript complaints
-declare module '*.jsx';
+declare module './*.jsx';
 
 // Optional: Specific modules if you really want individual handling
 declare module './pages/ComingSoon';
