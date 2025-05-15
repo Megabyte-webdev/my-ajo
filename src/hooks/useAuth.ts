@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { useMutation } from "@tanstack/react-query"; // Ensure this is from @tanstack/react-query
+import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { axiosClient } from "../services/axios-client";
 import { AuthContext } from "../context/AuthContext";
@@ -7,160 +7,154 @@ import { onFailure } from "../utils/notifications/OnFailure";
 import { onSuccess } from "../utils/notifications/OnSuccess";
 import { queryClient } from "../services/query-client";
 import { extractErrorMessage } from "../utils/formmaters";
+
+// Add types if available
+interface Credentials {
+  email: string;
+  password: string;
+}
+
+interface UserData {
+  data: {
+    email: string;
+    [key: string]: any;
+  };
+  message?: string;
+  user?: any;
+}
+
 const useAuth = () => {
   const navigate = useNavigate();
   const { authDetails, updateAuth } = useContext(AuthContext);
   const [otpRequested, setOtpRequested] = useState(false);
-
   const client = axiosClient(authDetails?.token?.token);
 
-  const storedUserEmail = (email) => {
+  // Fixed: explicitly handle return type
+  const storedUserEmail = (email?: string): string | null | void => {
     if (email) {
-      localStorage.setItem("register_email", email)
+      localStorage.setItem("register_email", email);
     } else {
       return localStorage.getItem("register_email");
     }
-  }
+  };
 
-  // Login Mutation
   const loginMutation = useMutation({
-    mutationFn: async (credentials) => {
+    mutationFn: async (credentials: Credentials) => {
       const { data } = await client.post("/login", credentials);
-      if (!data?.data?.user) {
-        throw new Error("Invalid response: User data not found");
-      }
+      if (!data?.data?.user) throw new Error("Invalid response: User data not found");
       return data.data;
     },
-    onSuccess: (userData) => {
-      updateAuth(userData); // Immediately update auth state
+    onSuccess: (userData: UserData) => {
+      updateAuth(userData);
       onSuccess({ message: "Login Successful!", success: "Continuing to dashboard" });
+
       if (userData?.user?.lastRoleId === 2) {
         navigate("/promoter/events");
       } else {
         navigate("/attendee/home");
       }
     },
-    onError: (error) => {
+    onError: (error: any) => {
       onFailure({ message: "Login Failed", error: extractErrorMessage(error) });
     },
   });
 
-  // Register Mutation
   const registerMutation = useMutation({
-    mutationFn: async (userData) => {
+    mutationFn: async (userData: any) => {
       const { data } = await client.post("/register", userData);
       return data;
     },
-    onSuccess: (userData) => {
+    onSuccess: (userData: UserData) => {
       setOtpRequested(true);
-      storedUserEmail(userData?.data?.email)
+      storedUserEmail(userData?.data?.email || "");
       navigate("/email-verification");
-      onSuccess({ message: "Registration Successful!", success: userData?.message || "User created successfully" });
+      onSuccess({
+        message: "Registration Successful!",
+        success: userData?.message || "User created successfully",
+      });
     },
-    onError: (err) => {
+    onError: (err: any) => {
       onFailure({ message: "Registration Failed", error: extractErrorMessage(err) });
     },
   });
 
-  // Mutation for updating profile
   const updateProfile = useMutation({
-    mutationFn: async (profileData) => {
-      if (!authDetails?.user?.profile?.userId) {
-        throw new Error("User ID not found");
-      }
+    mutationFn: async (profileData: FormData) => {
+      const userId = authDetails?.user?.profile?.userId;
+      if (!userId) throw new Error("User ID not found");
 
-      const { data } = await client.put(
-        `/profile/${authDetails.user.profile.userId}`,
-        profileData, // Profile data must be in the second argument
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const { data } = await client.put(`/profile/${userId}`, profileData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
-
-      if (!data && data?.status) {
-        throw new Error(data?.message || "Error updating profile");
-      }
+      if (!data?.status) throw new Error(data?.message || "Error updating profile");
 
       return data.data;
     },
-    onSuccess: (updatedUser) => {
-      const { user, ...other } = authDetails
-      updateAuth({ ...other, user: { ...user, ...updatedUser } })
+    onSuccess: (updatedUser: any) => {
+      const { user, ...other } = authDetails || {};
+      updateAuth({ ...other, user: { ...user, ...updatedUser } });
       onSuccess({ message: "Profile Update", success: "Profile updated successfully!" });
     },
-    onError: (err) => {
+    onError: (err: any) => {
       onFailure({ message: "Failed to update profile", error: extractErrorMessage(err) });
     },
   });
 
-
-
   const requestOtpMutation = useMutation({
-    mutationFn: async (info) => {
-      const email = storedUserEmail(info?.email); // Call function to get email
-      if (!email) {
-        throw new Error("No email provided");
-      }
-      const { data } = await client.post("/resend-otp", { email: email });
-      if (!data?.success) {
-        throw new Error("An error occurred");
-      }
+    mutationFn: async (info: { email?: string }) => {
+      const email = storedUserEmail(info?.email) || "";
+      if (!email) throw new Error("No email provided");
+
+      const { data } = await client.post("/resend-otp", { email });
+      if (!data?.success) throw new Error("An error occurred");
+
       return data;
     },
-    onSuccess: (data) => {
+    onSuccess: (data: any) => {
       setOtpRequested(true);
       onSuccess({ message: "OTP Requested!", success: data?.message || "Please check your mail" });
-
     },
-    onError: (err) => {
+    onError: (err: any) => {
       setOtpRequested(false);
       onFailure({ message: "Can't Request OTP", error: extractErrorMessage(err) });
     },
   });
-  
+
   const verifyOtpMutation = useMutation({
-    mutationFn: async (otpData) => {
-      const email = storedUserEmail(otpData?.email); // Call function to get email
-      if (!email) {
-        throw new Error("No email provided");
-      }
-      const { data } = await client.post("/verify-otp", { ...otpData, email: email });
-      if (!data?.success) {
-        throw new Error("Invalid response: User data not found");
-      }
+    mutationFn: async (otpData: { email?: string; code: string }) => {
+      const email = storedUserEmail(otpData?.email) || "";
+      if (!email) throw new Error("No email provided");
+
+      const { data } = await client.post("/verify-otp", { ...otpData, email });
+      if (!data?.success) throw new Error("Invalid response: User data not found");
+
       return data.data;
     },
-    onSuccess: (userData) => {
+    onSuccess: (userData: UserData) => {
       updateAuth(userData);
       navigate("/login");
       onSuccess({ message: "OTP Verified!", success: "Proceeding to login" });
     },
-    onError: (err) => {
+    onError: (err: any) => {
       onFailure({ message: "OTP Verification Failed", error: extractErrorMessage(err) });
     },
   });
 
   const logoutMutation = useMutation({
     mutationFn: async () => {
-      queryClient.clear(); // Clear all cached data
+      queryClient.clear();
     },
     onSuccess: () => {
-      updateAuth(null); // Reset auth state
+      updateAuth(null);
       navigate("/login", { replace: true });
-      onSuccess({
-        message: "Logout successful",
-        success: "You have been logged out.",
-      });
+      onSuccess({ message: "Logout successful", success: "You have been logged out." });
     },
-    onError: (err) => {
+    onError: (err: any) => {
       onFailure({ message: "Logout Failed", error: err.message });
     },
   });
 
-  // Check if any mutation is loading
   const isLoading = {
     login: loginMutation.isPending,
     signUp: registerMutation.isPending,
@@ -176,8 +170,6 @@ const useAuth = () => {
       logoutMutation.isPending,
   };
 
-
-
   return {
     login: loginMutation.mutate,
     signUp: registerMutation.mutate,
@@ -187,8 +179,9 @@ const useAuth = () => {
     updateProfile: updateProfile.mutateAsync,
     otpRequested,
     isLoading,
-    storedUserEmail
+    storedUserEmail,
   };
 };
 
 export default useAuth;
+                  
