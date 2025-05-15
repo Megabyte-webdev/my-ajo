@@ -99,8 +99,8 @@ const useAuth = () => {
 
 
   const requestOtpMutation = useMutation({
-    mutationFn: async () => {
-      const email = storedUserEmail(); // Call function to get email
+    mutationFn: async (data) => {
+      const email = storedUserEmail(data?.email); // Call function to get email
       if (!email) {
         throw new Error("No email provided");
       }
@@ -122,7 +122,7 @@ const useAuth = () => {
   
   const verifyOtpMutation = useMutation({
     mutationFn: async (otpData) => {
-      const email = storedUserEmail(); // Call function to get email
+      const email = storedUserEmail(otpData?.email); // Call function to get email
       if (!email) {
         throw new Error("No email provided");
       }
