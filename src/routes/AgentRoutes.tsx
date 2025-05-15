@@ -9,7 +9,7 @@ const MainLayout = lazy(() => import("../layout/MainLayout"));
 export default function AgentRoutes() {
   const { authDetails } = useContext(AuthContext);
 
-  if (authDetails?.user?.role !== "agent") return <Navigate to="/login" replae />;
+  if (authDetails?.user?.role !== "agent") return <Navigate to="/login" replace />;
 
   return (
     <Routes>
