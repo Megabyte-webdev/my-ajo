@@ -5,7 +5,7 @@ import useAuth from "../hooks/useAuth";
 import { FaPowerOff } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ProfileDropdown = ({ user={}, fullMode = false }) => {
+const ProfileDropdown = ({ user, fullMode = false }) => {
     const [isOpen, setIsOpen] = useState(false);
     const { logout } = useAuth();
 
