@@ -35,9 +35,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return storedUser ? JSON.parse(storedUser) : {};
   });
 
-  const isTokenExpired = (expiresAt: string): boolean => {
+  /*const isTokenExpired = (expiresAt: string): boolean => {
     return new Date(expiresAt) <= new Date();
-  };
+  };*/
 
   const refreshToken = async () => {
     if (!authDetails?.token?.token) return;
