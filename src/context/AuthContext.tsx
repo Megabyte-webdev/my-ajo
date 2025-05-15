@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState, useContext } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 //import { useQueryClient } from "@tanstack/react-query";
 
@@ -30,9 +30,9 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
  // const queryClient = useQueryClient();
 
-  const [authDetails, setAuthDetails] = useState<AuthUser | null>(() => {
+  const [authDetails, setAuthDetails] = useState<AuthUser>(() => {
     const storedUser = sessionStorage.getItem("authUser");
-    return storedUser ? JSON.parse(storedUser) : null;
+    return storedUser ? JSON.parse(storedUser) : {};
   });
 
   const isTokenExpired = (expiresAt: string): boolean => {
