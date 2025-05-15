@@ -112,7 +112,8 @@ const useAuth = () => {
     },
     onSuccess: (data) => {
       setOtpRequested(true);
-      onSuccess({ message: "OTP Requested!", success: `please check your mail` || data?.message });
+      onSuccess({ message: "OTP Requested!", success: data?.message || "Please check your mail" });
+
     },
     onError: (err) => {
       setOtpRequested(false);
