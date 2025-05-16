@@ -5,17 +5,17 @@ const AgentDashboard = () => {
   return (
     <div className="min-h-screen bg-[#F9F6F2] text-[#333] px-4 py-6 md:px-10 md:py-8 font-sans">
 
-      <div className="flex border-b border-gray-300 mb-4">
-        <button className="py-2 px-4 border-b-2 border-[#6B3F1D] font-medium text-[#6B3F1D]">
+      <div className="flex border-b border-gray-300 mb-4 text-center">
+        <button className="flex-1 py-2 px-2 md:px-4 border-b-2 border-[#6B3F1D] font-medium text-[#6B3F1D]">
           Agent Dashboard
         </button>
-        <button className="py-2 px-4 text-gray-500">Member Dashboard</button>
+        <button className="flex-1 py-2 px-2 md:px-4 text-gray-500">Member Dashboard</button>
       </div>
 
       {/* My Managed Groups */}
       <div className="bg-white p-4 rounded-xl mb-6 shadow-sm">
         <p className="text-sm font-semibold mb-3">My managed groups</p>
-        <div className="flex gap-2 overflow-x-auto">
+        <div className="flex gap-2 overflow-x-auto py-2">
           {[
             { name: 'Market Àjo', amount: '₦5,000/ Month', members: '10 members' },
             { name: 'House Àjo', amount: '₦7,000/ Week', members: '20 members' },
