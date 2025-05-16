@@ -90,12 +90,12 @@ const AgentDashboard = () => {
           <p className="text-sm text-[#6B3F1D]">View all rotation</p>
         </div>
         <div className="flex gap-2 overflow-x-auto py-2">
-        <div className="bg-green-100 p-3 rounded-xl shadow-inner min-w-72">
+        <div className="bg-green-100 p-3 rounded-xl shadow-inner min-w-60">
           <p className="text-green-800 font-semibold">This month’s payout:</p>
           <p className="text-sm">Foyin Favour is collecting ₦5,000</p>
           <p className="text-sm">May 8, 2025</p>
         </div>
-          <div className="bg-green-100 p-3 rounded-xl shadow-inner min-w-72">
+          <div className="bg-green-100 p-3 rounded-xl shadow-inner min-w-60">
           <p className="text-green-800 font-semibold">April payout:</p>
           <p className="text-sm">John Doe collected ₦5,000</p>
           <p className="text-sm">April 8, 2025</p>
