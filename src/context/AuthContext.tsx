@@ -76,7 +76,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     id: "1",
     email: "agent@example.com",
     name: "Agent",
-      
+    user:{role: "agent"},
     token: "dummy-token",
   });
   }, []);
