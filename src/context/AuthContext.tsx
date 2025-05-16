@@ -35,7 +35,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     return new Date(expiresAt) <= new Date();
   };*/
 
-  const refreshToken = async () => {
+  /*const refreshToken = async () => {
     if (!authDetails?.token) return;
 
     try {
@@ -43,7 +43,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${authDetails.token.token}`,
+          Authorization: `Bearer ${authDetails.token}`,
         },
       });
 
@@ -55,7 +55,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.error("Failed to refresh token:", error);
       updateAuth(null);
     }
-  };
+  };*/
 
   const updateAuth = (user: AuthUser | undefined) => {
     setAuthDetails(user);
