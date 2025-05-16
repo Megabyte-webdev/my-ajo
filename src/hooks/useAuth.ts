@@ -28,7 +28,7 @@ type AuthUser = {
   id: string;
   name: string;
   email: string;
-  token: Token;
+  token: string;
   user?: any;
 };
 
