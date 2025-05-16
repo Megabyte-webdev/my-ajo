@@ -22,7 +22,7 @@ const AgentDashboard = () => {
           ].map((group, i) => (
             <div
               key={i}
-              className="flex-1 flex-shrink-0 min-w-40 border border-[#D9B28C] p-3 rounded-lg bg-transparent hover:bg-[#D9B28C]/40 transition-colors"
+              className="flex-1 flex-shrink-0 min-w-40 border border-[#D9B28C] p-3 rounded-lg bg-transparent hover:bg-[#D9B28C] transition-colors"
             >
               <p>{group.name}</p>
               <p className="text-sm font-medium">{group.amount}</p>
