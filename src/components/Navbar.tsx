@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
-import logo from "../assets/logo.png";
+//import logo from "../assets/logo.png";
 import Btn from "./Btn";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { AuthContext } from "../context/AuthContext";
