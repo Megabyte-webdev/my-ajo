@@ -15,7 +15,7 @@ const AgentDashboard = () => {
       {/* My Managed Groups */}
       <div className="bg-white p-4 rounded-xl mb-6 shadow-sm">
         <p className="text-sm font-semibold mb-3">My managed groups</p>
-        <div className="space-y-2">
+        <div className="flex gap-2 overflow-x-auto">
           {[
             { name: 'Market Àjo', amount: '₦5,000/ Month', members: '10 members' },
             { name: 'House Àjo', amount: '₦7,000/ Week', members: '20 members' },
@@ -23,11 +23,11 @@ const AgentDashboard = () => {
           ].map((group, i) => (
             <div
               key={i}
-              className={`border p-3 rounded-lg ${i === 0 ? 'bg-[#F4EBDD]' : 'bg-gray-50'}`}
+              className={`border border-[#D9B28C] p-3 rounded-lg ${i === 0 ? 'bg-[#D9B28C]' : 'bg-transparent'}`}
             >
-              <p className="font-medium">{group.name}</p>
-              <p className="text-sm text-gray-600">{group.amount}</p>
-              <p className="text-sm text-gray-600">{group.members}</p>
+              <p className="">{group.name}</p>
+              <p className="text-sm font-medium">{group.amount}</p>
+              <p className="text-sm">{group.members}</p>
             </div>
           ))}
         </div>
@@ -38,16 +38,16 @@ const AgentDashboard = () => {
         <div className="flex justify-between items-center mb-2">
           <p className="font-semibold">Market Àjo</p>
           <div className="flex gap-2">
-            <button className="flex items-center gap-1 text-sm text-[#6B3F1D] border px-2 py-1 rounded-md">
+            <button className="flex items-center gap-1 text-xs md:text-sm text-[#6B3F1D] border px-2 py-1 rounded-md">
               <Share2 size={14} /> Share code
             </button>
-            <button className="bg-[#6B3F1D] text-white px-3 py-1 text-sm rounded-md">
+            <button className="bg-[#6B3F1D] text-white px-3 py-1 text-xs md:text-sm rounded-md">
               Manage group
             </button>
           </div>
         </div>
         <p className="text-sm text-gray-500 mb-1">Your Group Code:</p>
-        <div className="bg-gray-100 rounded-lg p-2 flex justify-between items-center">
+        <div className="bg-[#8C5C2C1A] rounded-lg p-2 flex justify-between items-center">
           <span className="font-semibold tracking-widest">AJO–8Y72XF</span>
           <Clipboard size={16} className="text-gray-500" />
         </div>
@@ -80,7 +80,7 @@ const AgentDashboard = () => {
             </span>
           </div>
         ))}
-        <p className="text-sm text-[#6B3F1D] mt-2 font-medium">View all members</p>
+        <p className="text-sm text-[#6B3F1D] pt-2 font-medium text-right">View all members</p>
       </div>
 
       {/* Rotation Schedule */}
