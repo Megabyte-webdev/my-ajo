@@ -8,7 +8,6 @@ import { onSuccess } from "../utils/notifications/OnSuccess";
 import { queryClient } from "../services/query-client";
 import { extractErrorMessage } from "../utils/formmaters";
 
-type Token = string;
 
 type UserData = {
   user: {
@@ -22,7 +21,7 @@ type UserData = {
     };
     [key: string]: any;
   };
-  token: Token;
+  token: string;
 };
 
 type AuthUser = {
