@@ -1,4 +1,3 @@
-
 import { Clipboard, Share2 } from 'lucide-react';
 
 const AgentDashboard = () => {
@@ -23,9 +22,9 @@ const AgentDashboard = () => {
           ].map((group, i) => (
             <div
               key={i}
-              className={`flex-1 flex-shrink-0 min-w-40 border border-[#D9B28C] p-3 rounded-lg ${i === 0 ? 'bg-[#D9B28C]' : 'bg-transparent'}`}
+              className="flex-1 flex-shrink-0 min-w-40 border border-[#D9B28C] p-3 rounded-lg bg-transparent hover:bg-[#D9B28C]/40 transition-colors"
             >
-              <p className="">{group.name}</p>
+              <p>{group.name}</p>
               <p className="text-sm font-medium">{group.amount}</p>
               <p className="text-sm">{group.members}</p>
             </div>
@@ -90,16 +89,16 @@ const AgentDashboard = () => {
           <p className="text-sm text-[#6B3F1D]">View all rotation</p>
         </div>
         <div className="flex gap-2 overflow-x-auto py-2">
-        <div className="bg-green-100 p-3 rounded-xl shadow-inner min-w-60">
-          <p className="text-green-800 font-semibold">This month’s payout:</p>
-          <p className="text-sm">Foyin Favour is collecting ₦5,000</p>
-          <p className="text-sm">May 8, 2025</p>
-        </div>
           <div className="bg-green-100 p-3 rounded-xl shadow-inner min-w-60">
-          <p className="text-green-800 font-semibold">April payout:</p>
-          <p className="text-sm">John Doe collected ₦5,000</p>
-          <p className="text-sm">April 8, 2025</p>
-        </div>
+            <p className="text-green-800 font-semibold">This month’s payout:</p>
+            <p className="text-sm">Foyin Favour is collecting ₦5,000</p>
+            <p className="text-sm">May 8, 2025</p>
+          </div>
+          <div className="bg-green-100 p-3 rounded-xl shadow-inner min-w-60">
+            <p className="text-green-800 font-semibold">April payout:</p>
+            <p className="text-sm">John Doe collected ₦5,000</p>
+            <p className="text-sm">April 8, 2025</p>
+          </div>
         </div>
       </div>
 
@@ -125,3 +124,4 @@ const AgentDashboard = () => {
 };
 
 export default AgentDashboard;
+      
