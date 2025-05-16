@@ -1,5 +1,5 @@
 
-import { Menu, Clipboard, Share2 } from 'lucide-react';
+import { Clipboard, Share2 } from 'lucide-react';
 
 const AgentDashboard = () => {
   return (
