@@ -18,7 +18,7 @@ const Navbar = ({ register = "/registration", login = "/login" }) => {
 
   return (
     <nav
-      className="sticky top-0 left-0 right-0 z-20 max-w-peak min-h-14 w-full mx-auto flex p-3 px-sm md:px-md lg:px-lg justify-between items-center flex-wrap md:flex-nowrap transition-all duration-300 bg-white shadow-md">
+      className="sticky top-0 left-0 right-0 z-20 max-w-peak min-h-14 w-full mx-auto flex p-3 px-sm md:px-md lg:px-lg justify-between items-center flex-wrap md:flex-nowrap transition-all duration-300 bg-[#8C5C2C] shadow-md">
       <Link to="/" className="flex justify-center items-center mr-auto">
         {/*<img src={logo} alt="logo" className="w-28 md:w-32" />*/}
         <h1 className="text-2xl text-white font-semibold">MyÀjo</h1>
