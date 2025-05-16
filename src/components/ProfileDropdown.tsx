@@ -10,7 +10,7 @@ const ProfileDropdown = ({ user, fullMode = false }) => {
     const { logout } = useAuth();
 
     return (
-        <div className="relative text-gray-700">
+        <div className="relative text-white">
             {/* Profile */}
             <div
                 className="flex items-center gap-2 ml-2 font-medium cursor-pointer"
