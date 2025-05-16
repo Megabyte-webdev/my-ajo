@@ -7,7 +7,31 @@ import { onFailure } from "../utils/notifications/OnFailure";
 import { onSuccess } from "../utils/notifications/OnSuccess";
 import { queryClient } from "../services/query-client";
 import { extractErrorMessage } from "../utils/formmaters";
-import { AuthUser, UserData } from "../types";
+
+type Token = string;
+
+type UserData = {
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    lastRoleId?: number;
+    profile?: {
+      userId?: string;
+      [key: string]: any;
+    };
+    [key: string]: any;
+  };
+  token: Token;
+};
+
+type AuthUser = {
+  id: string;
+  name: string;
+  email: string;
+  token: Token;
+  user?: any;
+};
 
 const useAuth = () => {
   const navigate = useNavigate();
@@ -175,9 +199,6 @@ const useAuth = () => {
     storedUserEmail,
   };
 };
-
-export default useAuth;
-;
 
 export default useAuth;
                   
