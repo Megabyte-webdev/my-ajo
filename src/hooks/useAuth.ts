@@ -37,7 +37,7 @@ const useAuth = () => {
   const { authDetails, updateAuth } = useContext(AuthContext);
   const [otpRequested, setOtpRequested] = useState(false);
 
-  const client = axiosClient(authDetails?.token);
+  const client = axiosClient(authDetails?.token || "");
 
   const storedUserEmail = (email?: string) => {
     if (email) {
