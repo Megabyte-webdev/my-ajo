@@ -71,9 +71,9 @@ const AgentDashboard = () => {
           { name: 'Tobi Shobams', status: 'Paid' },
           { name: 'Foyin Favour', status: 'Pending' },
         ].map((member, i) => (
-          <div key={i} className="flex justify-between py-1">
+          <div key={i} className="flex justify-between py-1 text-sm">
             <p>{i + 1}. {member.name}</p>
-            <span className={`text-xs px-2 py-1 rounded-full ${
+            <span className={`px-2 py-1 rounded-full ${
               member.status === 'Paid' ? 'bg-green-100 text-green-700' : 'bg-[#E6D2BD] text-[#6B3F1D]'
             }`}>
               {member.status}
@@ -89,10 +89,17 @@ const AgentDashboard = () => {
           <p className="font-semibold">Rotation Schedule</p>
           <p className="text-sm text-[#6B3F1D]">View all rotation</p>
         </div>
-        <div className="bg-green-100 p-3 rounded-xl shadow-inner">
+        <div className="flex gap-2 overflow-x-auto">
+        <div className="bg-green-100 p-3 rounded-xl shadow-inner min-w-72">
           <p className="text-green-800 font-semibold">This month’s payout:</p>
           <p className="text-sm">Foyin Favour is collecting ₦5,000</p>
           <p className="text-sm">May 8, 2025</p>
+        </div>
+          <div className="bg-green-100 p-3 rounded-xl shadow-inner min-w-72">
+          <p className="text-green-800 font-semibold">This month’s payout:</p>
+          <p className="text-sm">John Doe is collecting ₦5,000</p>
+          <p className="text-sm">May 8, 2025</p>
+        </div>
         </div>
       </div>
 
