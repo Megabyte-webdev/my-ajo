@@ -19,7 +19,7 @@ const Navbar = ({ register = "/registration", login = "/login" }) => {
   return (
     <nav
       className="sticky top-0 left-0 right-0 z-20 max-w-peak min-h-14 w-full mx-auto flex p-3 px-sm md:px-md lg:px-lg justify-between items-center flex-wrap md:flex-nowrap transition-all duration-300 bg-white shadow-md">
-      <Link to="/" className="flex justify-center items-center mx-2 mr-auto">
+      <Link to="/" className="flex justify-center items-center mr-auto">
         <img src={logo} alt="logo" className="w-28 md:w-32" />
       </Link>
 
