@@ -18,7 +18,7 @@ const Navbar = ({ register = "/registration", login = "/login" }) => {
 
   return (
     <nav
-      className="sticky top-0 left-0 right-0 z-20 max-w-peak min-h-14 w-full mx-auto flex p-3 px-sm md:px-md lg:px-lg justify-between items-center flex-wrap md:flex-nowrap transition-all duration-300 bg-[#8C5C2C] shadow-md">
+      className="sticky top-0 left-0 right-0 z-20 max-w-peak min-h-14 w-full mx-auto flex p-3 px-sm md:px-md lg:px-lg justify-between items-center flex-wrap md:flex-nowrap transition-all duration-300 bg-[#8C5C2C] text-white shadow-md">
       <Link to="/" className="flex justify-center items-center mr-auto">
         {/*<img src={logo} alt="logo" className="w-28 md:w-32" />*/}
         <h1 className="text-2xl text-white font-semibold">MyÀjo</h1>
@@ -27,7 +27,7 @@ const Navbar = ({ register = "/registration", login = "/login" }) => {
       <div
         className={`${!menu
           ? "hidden"
-          : "absolute top-16 left-0 right-0 bg-white flex flex-col px-4"
+          : "absolute top-10 left-0 right-0 bg-white flex flex-col px-4"
           } lg:flex lg:flex-row lg:static lg:bg-transparent lg:items-center lg:gap-4 my-3 mx-auto gap-2 font-bold text-sm order-1 w-full lg:w-max lg:order-0 *:p-2 *:cursor-pointer hover:*:hover:text-slate-600`}
       >
         <NavLink to="/" className="[&.active]:text-slate-600 text-slate-500">
@@ -63,7 +63,7 @@ const Navbar = ({ register = "/registration", login = "/login" }) => {
       </div>
 
       {authDetails?.user ?
-        <div className="lg:order-2 ml-auto hidden md:flex items-center gap-4 text-gray-600">
+        <div className="lg:order-2 ml-auto hidden md:flex items-center gap-4">
 
           <ProfileDropdown fullMode={true} user={authDetails?.user} />
         </div>
@@ -79,7 +79,7 @@ const Navbar = ({ register = "/registration", login = "/login" }) => {
 
 
       {authDetails?.user &&
-        <div className="lg:order-2 ml-auto flex md:hidden items-center gap-4 text-gray-600">
+        <div className="lg:order-2 ml-auto flex md:hidden items-center gap-4">
 
           <ProfileDropdown fullMode={true} user={authDetails?.user} />
         </div>
